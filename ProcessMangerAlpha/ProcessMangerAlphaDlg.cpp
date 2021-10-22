@@ -40,6 +40,12 @@ public:
 
 };
 
+// 转换时间
+double FILETIME2Double(const _FILETIME& fileTime) {
+	return double(fileTime.dwHighDateTime * 4.294967296e9) +
+		double(fileTime.dwLowDateTime);
+}
+
 CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
 {
 }
@@ -77,6 +83,7 @@ BEGIN_MESSAGE_MAP(CProcessMangerAlphaDlg, CDialogEx)
 	// 响应ID在某一范围的工具栏或菜单按钮消息
 	ON_COMMAND_RANGE(ID_32771, ID_32775, &CProcessMangerAlphaDlg::OnCommandRangePMenu)
 	ON_COMMAND_RANGE(ID_32779, ID_32791, &CProcessMangerAlphaDlg::OnCommandRangeMMenu)
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 
@@ -113,11 +120,43 @@ BOOL CProcessMangerAlphaDlg::OnInitDialog()
 
 	// TODO: 在此添加额外的初始化代码
 	
+	// 绑定老板键
+	// 获取当前窗口的句柄
+	HWND hMainWindow = AfxGetMainWnd()->m_hWnd;
+	// 注册热键
+	::RegisterHotKey(
+		hMainWindow,                // 窗口句柄
+		0x1234,                     // ID
+		MOD_CONTROL | MOD_SHIFT,    // 同时按下Ctrl+Shift
+		'H'                         // H
+	);
+
 	// 添加列
 	objListCtrl.InsertColumn(0, _T("PID"),    LVCFMT_CENTER, 100);
 	objListCtrl.InsertColumn(1, _T("进程名"),  LVCFMT_CENTER, 200);
 	objListCtrl.InsertColumn(2, _T("线程数量"), LVCFMT_CENTER, 100);
 	traverseProcess();
+	// 时间使用1号计时器
+	SetTimer(1, 1000, NULL);
+	// CPU和内存使用2号计时器
+	SetTimer(2, 3000, NULL);
+	// 初始化时间
+	GetSystemTimes(&idleTime, &kernelTime, &userTime);
+	// 初始化状态栏
+	UINT buf[3] = { 1,2,3 };
+	objStatusBar.Create(this);
+	// 状态栏分为3部分
+	objStatusBar.SetIndicators(buf, 3);
+	// 设置每一个部分的宽度
+	objStatusBar.SetPaneInfo(0, 1, 0, 180);
+	objStatusBar.SetPaneInfo(1, 2, 0, 180);
+	objStatusBar.SetPaneInfo(2, 3, 0, 180);
+	// 设置状态栏每一部分的内容
+	objStatusBar.SetPaneText(0, _T("获取系统时间中"));
+	objStatusBar.SetPaneText(1, _T("获取内存信息中"));
+	objStatusBar.SetPaneText(2, _T("获取CPU信息中"));
+	// 重定位
+	RepositionBars(AFX_IDW_CONTROLBAR_FIRST, AFX_IDW_CONTROLBAR_LAST, 0);
 
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
@@ -352,7 +391,8 @@ void CProcessMangerAlphaDlg::OnCommandRangeMMenu(UINT nId) {
 		}
 		// 老板键
 		case ID_32791: {
-
+			MessageBox(_T("Ctrl + Shift + H"),_T("提示 >_<"));
+			break;
 		}
 		default:
 			break;
@@ -371,3 +411,66 @@ void CProcessMangerAlphaDlg::upperPrivileges() {
 	AdjustTokenPrivileges(hToken, FALSE, &tp, sizeof(tp), NULL, NULL);
 }
 
+
+
+BOOL CProcessMangerAlphaDlg::PreTranslateMessage(MSG* pMsg)
+{
+	// TODO: 在此添加专用代码和/或调用基类
+	if ((pMsg->message == WM_HOTKEY) && (pMsg->wParam == 0x1234)) {
+		if (::IsWindowVisible(m_hWnd)) {
+			ShowWindow(SW_HIDE);
+		}
+		else {
+			ShowWindow(SW_SHOW);
+		}
+	}
+	return CDialogEx::PreTranslateMessage(pMsg);
+}
+
+// 1号计时器（进程和状态栏刷新）
+void CProcessMangerAlphaDlg::OnTimer(UINT_PTR nIDEvent)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	if (nIDEvent == 1) {
+		// 时间
+		SYSTEMTIME st;
+		CString strDTime, strDate, strTime;
+		GetLocalTime(&st);
+		strDate.Format(_T("%4d-%2d-%2d"), st.wYear, st.wMonth, st.wDay);
+		strTime.Format(_T("%2d:%2d:%2d"), st.wHour, st.wMinute, st.wSecond);
+		strDTime = strDate + _T("  ") + strTime;
+		objStatusBar.SetPaneText(0, strDTime);
+	}
+	// 2号计时器
+	if (nIDEvent == 2) {
+		// 获取新的时间
+		_FILETIME newIdleTIme, newKernelTime, newUserTime;
+		GetSystemTimes(&newIdleTIme, &newKernelTime, &newUserTime);
+		// 转换时间
+		double dOldIdleTime = FILETIME2Double(idleTime);
+		double dNewIdleTime = FILETIME2Double(newIdleTIme);
+		double dOldkernelTime = FILETIME2Double(kernelTime);
+		double dNewKernelTime = FILETIME2Double(newKernelTime);
+		double dOldUserTime = FILETIME2Double(userTime);
+		double dNewUserTime = FILETIME2Double(newUserTime);
+
+		// 给成员赋值
+		idleTime = newIdleTIme;
+		kernelTime = newKernelTime;
+		userTime = newUserTime;
+
+		// 计算使用率
+		int cpu = (100.0 - (dNewIdleTime - dOldIdleTime) / (dNewKernelTime - dOldkernelTime + dNewUserTime - dOldUserTime) * 100.0);
+		// 获取内存占用率
+		MEMORYSTATUSEX memStatus = { sizeof(MEMORYSTATUSEX) };
+		GlobalMemoryStatusEx(&memStatus);
+		// 设置CPU和内存的内容
+		CString MEM;
+		MEM.Format(_T("内存占用率 %d%%"), memStatus.dwMemoryLoad);
+		objStatusBar.SetPaneText(1, MEM);
+		CString CPU;
+		CPU.Format(_T("CPU使用率 %d%%"), cpu);
+		objStatusBar.SetPaneText(2, CPU);
+	}
+	CDialogEx::OnTimer(nIDEvent);
+}

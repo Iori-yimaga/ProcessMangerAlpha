@@ -51,5 +51,14 @@ public:
 	void OnCommandRangeMMenu(UINT nId);
 	// 提权操作
 	void upperPrivileges();
+	// 响应热键消息函数
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	CStatusBar objStatusBar;
+	// 始终回调函数
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	// 时间相关
+	_FILETIME idleTime, kernelTime, userTime;
 };
 
+// 时间转换
+double FILETIME2Double(const _FILETIME& fileTime);
