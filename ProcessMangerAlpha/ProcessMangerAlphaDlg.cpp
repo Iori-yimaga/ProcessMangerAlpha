@@ -7,6 +7,8 @@
 #include "ProcessMangerAlpha.h"
 #include "ProcessMangerAlphaDlg.h"
 #include "afxdialogex.h"
+#include <powrprof.h>
+#pragma comment(lib,"Powrprof.lib")
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -35,7 +37,7 @@ public:
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
-//	void getThreadsInfoByProcID(CString ProcID);
+
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
@@ -74,6 +76,7 @@ BEGIN_MESSAGE_MAP(CProcessMangerAlphaDlg, CDialogEx)
 	ON_NOTIFY(NM_RCLICK, IDC_LIST1, &CProcessMangerAlphaDlg::OnRclickList1)
 	// 响应ID在某一范围的工具栏或菜单按钮消息
 	ON_COMMAND_RANGE(ID_32771, ID_32775, &CProcessMangerAlphaDlg::OnCommandRangePMenu)
+	ON_COMMAND_RANGE(ID_32779, ID_32791, &CProcessMangerAlphaDlg::OnCommandRangeMMenu)
 END_MESSAGE_MAP()
 
 
@@ -286,7 +289,85 @@ void CProcessMangerAlphaDlg::OnCommandRangePMenu(UINT nId) {
 	}
 }
 
-//void CAboutDlg::getThreadsInfoByProcID(CString ProcID)
-//{
-//	// TODO: 在此处添加实现代码.
-//}
+// 主窗口主菜单
+void CProcessMangerAlphaDlg::OnCommandRangeMMenu(UINT nId) {
+	switch (nId) {
+		// 查看服务
+		case ID_32779: {
+			break;
+		}
+		// PE解析
+		case ID_32780: {
+			break;
+		}
+		// 查看窗口
+		case ID_32781: {
+			CWindowsDialog* objWd = new CWindowsDialog;
+			objWd->DoModal();
+			break;
+		}
+		// 查看文件
+		case ID_32782: {
+
+		}
+		// 清理内存
+		case ID_32783: {
+
+		}
+		// 清理回收站
+		case ID_32784: {
+
+		}
+		// 清理VS项目
+		case ID_32785: {
+
+		}
+		// 杀毒
+		case ID_32786: {
+
+		}
+		// 关机
+		case ID_32787: {
+			upperPrivileges();
+			ExitWindowsEx(EWX_POWEROFF | EWX_FORCE, SHTDN_REASON_MAJOR_APPLICATION);
+			break;
+		}
+		// 重启
+		case ID_32788: {
+			upperPrivileges();
+			ExitWindowsEx(EWX_REBOOT | EWX_FORCE, SHTDN_REASON_MAJOR_APPLICATION);
+			break;
+		}
+		// 注销
+		case ID_32789: {
+			upperPrivileges();
+			ExitWindowsEx(EWX_LOGOFF | EWX_FORCE, SHTDN_REASON_MAJOR_APPLICATION);
+			break;
+		}
+		// 休眠
+		case ID_32790: {
+			upperPrivileges();
+			SetSuspendState(TRUE, FALSE, FALSE);
+			break;
+		}
+		// 老板键
+		case ID_32791: {
+
+		}
+		default:
+			break;
+	}
+}
+
+// 提权操作
+void CProcessMangerAlphaDlg::upperPrivileges() {
+	HANDLE hToken = NULL;
+	HANDLE hProcess = GetCurrentProcess();
+	OpenProcessToken(hProcess, TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken);
+	TOKEN_PRIVILEGES tp = { 0 };
+	LookupPrivilegeValue(0, SE_SHUTDOWN_NAME, &tp.Privileges[0].Luid);
+	tp.PrivilegeCount = 1;
+	tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+	AdjustTokenPrivileges(hToken, FALSE, &tp, sizeof(tp), NULL, NULL);
+}
+

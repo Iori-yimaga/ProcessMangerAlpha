@@ -66,16 +66,18 @@ void CHeapDialog::getHeapInfoByProcID(CString ProcID)
 			// 遍历堆块数据
 			HEAPENTRY32 hHeapEntry = { sizeof(HEAPENTRY32) };
 			if (Heap32First(&hHeapEntry, dwPid, hList.th32HeapID)) {
-				objHeapList.InsertItem(i, _T(""));
-				// 堆ID
-				CString HeapID;
-				HeapID.Format(_T("0x%X"), hHeapEntry.th32HeapID);
-				objHeapList.SetItemText(i, 0, HeapID);
-				// 堆块大小
-				CString HeapSize;
-				HeapSize.Format(_T("%d"), hHeapEntry.dwBlockSize);
-				objHeapList.SetItemText(i, 1, HeapSize);
-				i++;
+				do {
+					objHeapList.InsertItem(i, _T(""));
+					// 堆ID
+					CString HeapID;
+					HeapID.Format(_T("0x%X"), hHeapEntry.th32HeapID);
+					objHeapList.SetItemText(i, 0, HeapID);
+					// 堆块大小
+					CString HeapSize;
+					HeapSize.Format(_T("%d"), hHeapEntry.dwBlockSize);
+					objHeapList.SetItemText(i, 1, HeapSize);
+					i++;
+				} while (Heap32Next(&hHeapEntry));
 			}
 		} while (Heap32ListNext(hHeapSnap, &hList));
 	}

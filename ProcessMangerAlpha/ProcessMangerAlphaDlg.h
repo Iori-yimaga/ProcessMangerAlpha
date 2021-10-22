@@ -7,6 +7,7 @@
 #include "CThreadsDialog.h"
 #include "CModulesDialog.h"
 #include "CHeapDialog.h"
+#include "CWindowsDialog.h"
 #include "GlobalVals.h"
 
 // CProcessMangerAlphaDlg 对话框
@@ -46,4 +47,9 @@ public:
 	afx_msg void OnRclickList1(NMHDR* pNMHDR, LRESULT* pResult);
 	// 进程菜单回调函数
 	void OnCommandRangePMenu(UINT nId);
+	// 主窗口菜单
+	void OnCommandRangeMMenu(UINT nId);
+	// 提权操作
+	void upperPrivileges();
 };
+
