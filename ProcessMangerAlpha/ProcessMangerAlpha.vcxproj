@@ -118,6 +118,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -183,6 +184,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CFilesDialog.h" />
     <ClInclude Include="CHeapDialog.h" />
     <ClInclude Include="CModulesDialog.h" />
     <ClInclude Include="CThreadsDialog.h" />
@@ -196,6 +198,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CFilesDialog.cpp" />
     <ClCompile Include="CHeapDialog.cpp" />
     <ClCompile Include="CModulesDialog.cpp" />
     <ClCompile Include="CThreadsDialog.cpp" />

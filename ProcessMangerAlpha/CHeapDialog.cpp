@@ -41,6 +41,8 @@ BOOL CHeapDialog::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+	// 样式
+	objHeapList.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES | LVS_EX_CHECKBOXES);
 	objHeapList.InsertColumn(0, _T("HeapID"), LVCFMT_CENTER, 200);
 	objHeapList.InsertColumn(1, _T("堆大小"), LVCFMT_CENTER, 200);
 	getHeapInfoByProcID(g_ProcID);
@@ -81,7 +83,5 @@ void CHeapDialog::getHeapInfoByProcID(CString ProcID)
 			}
 		} while (Heap32ListNext(hHeapSnap, &hList));
 	}
-	// 样式
-	objHeapList.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES | LVS_EX_CHECKBOXES);
 	CloseHandle(hHeapSnap);
 }

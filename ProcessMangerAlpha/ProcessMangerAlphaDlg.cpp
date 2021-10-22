@@ -320,7 +320,7 @@ void CProcessMangerAlphaDlg::OnCommandRangePMenu(UINT nId) {
 		}
 		// 注入DLL
 		case ID_32775: {
-			
+			MessageBox(_T("期待后续更新~~~"), _T("Oops!"));
 			break;
 		}
 		default:
@@ -347,15 +347,23 @@ void CProcessMangerAlphaDlg::OnCommandRangeMMenu(UINT nId) {
 		}
 		// 查看文件
 		case ID_32782: {
-
+			CFolderPickerDialog* pathDialog = new CFolderPickerDialog();
+			pathDialog->DoModal();
+			CString DirPath = pathDialog->GetFolderPath();
+			CFilesDialog* objFd = new CFilesDialog;
+			objFd->dirPath = DirPath;
+			objFd->DoModal();
+			break;
 		}
 		// 清理内存
 		case ID_32783: {
-
+			MessageBox(_T("期待后续更新~~~"), _T("Oops!"));
+			break;
 		}
 		// 清理回收站
 		case ID_32784: {
-
+			MessageBox(_T("期待后续更新~~~"), _T("Oops!"));
+			break;
 		}
 		// 清理VS项目
 		case ID_32785: {
@@ -363,7 +371,8 @@ void CProcessMangerAlphaDlg::OnCommandRangeMMenu(UINT nId) {
 		}
 		// 杀毒
 		case ID_32786: {
-
+			MessageBox(_T("期待后续更新~~~"), _T("Oops!"));
+			break;
 		}
 		// 关机
 		case ID_32787: {

@@ -8,6 +8,7 @@
 #include "CModulesDialog.h"
 #include "CHeapDialog.h"
 #include "CWindowsDialog.h"
+#include "CFilesDialog.h"
 #include "GlobalVals.h"
 
 // CProcessMangerAlphaDlg 对话框
