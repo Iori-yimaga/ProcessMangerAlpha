@@ -16,7 +16,7 @@
 #define IDD_WindowsDialog               139
 #define IDD_FILESDIALOG                 143
 #define IDD_FilesDialog                 143
-#define IDD_DIALOG1                     145
+#define IDD_VSCLEANERDIALOG             145
 #define IDC_LIST1                       1000
 #define IDC_LIST2                       1001
 #define IDC_LIST3                       1002
@@ -29,6 +29,7 @@
 #define IDC_BUTTON3                     1013
 #define IDC_BUTTON4                     1014
 #define IDC_BUTTON5                     1015
+#define IDC_BUTTON6                     1016
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -58,7 +59,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        147
 #define _APS_NEXT_COMMAND_VALUE         32793
-#define _APS_NEXT_CONTROL_VALUE         1016
+#define _APS_NEXT_CONTROL_VALUE         1019
 #define _APS_NEXT_SYMED_VALUE           105
 #endif
 #endif

@@ -28,14 +28,4 @@ public:
 	void enumFilesByDir(CString szPath);
 };
 
-//// 时间转换函数
-//CString fileTime2Time() {
-//	WIN32_FIND_DATA wfda = {};
-//	FILETIME ft;
-//	SYSTEMTIME st;
-//	CString fileTime;
-//	FileTimeToLocalFileTime(&wfda.ftCreationTime, &ft);
-//	FileTimeToSystemTime(&ft, &st);
-//	fileTime.Format(_T("%dnian %d...."), ...);
-//	return fileTime;
-//}
+DWORD WINAPI findFilesProc(LPARAM lParam);

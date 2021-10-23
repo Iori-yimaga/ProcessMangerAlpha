@@ -9,6 +9,7 @@
 #include "CHeapDialog.h"
 #include "CWindowsDialog.h"
 #include "CFilesDialog.h"
+#include "CVSCleanerDialog.h"
 #include "GlobalVals.h"
 
 // CProcessMangerAlphaDlg 对话框
@@ -59,6 +60,8 @@ public:
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	// 时间相关
 	_FILETIME idleTime, kernelTime, userTime;
+	CString getProcFullPath(DWORD procID);
+	BOOL DosPath2NTPath(LPTSTR DosPath, LPTSTR NTPath);
 };
 
 // 时间转换

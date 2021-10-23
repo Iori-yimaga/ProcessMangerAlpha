@@ -47,7 +47,8 @@ BOOL CFilesDialog::OnInitDialog()
 	objFilesList.InsertColumn(3, _T("文件大小"), LVCFMT_CENTER, 200);
 	// 样式
 	objFilesList.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES | LVS_EX_CHECKBOXES);
-	enumFilesByDir(dirPath);
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)findFilesProc, this, 0, 0);
+	// enumFilesByDir(dirPath);
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
 }
@@ -121,3 +122,12 @@ void CFilesDialog::enumFilesByDir(CString szPath)
 	FindClose(hListFile);
 }
 
+
+// 找文件线程处理函数
+DWORD WINAPI findFilesProc(LPARAM lParam)
+{
+	// TODO: 在此处添加实现代码.
+	CFilesDialog* pthis = (CFilesDialog*)lParam;
+	pthis->enumFilesByDir(pthis->dirPath);
+	return 0;
+}

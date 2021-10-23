@@ -45,7 +45,7 @@ BOOL CHeapDialog::OnInitDialog()
 	objHeapList.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES | LVS_EX_CHECKBOXES);
 	objHeapList.InsertColumn(0, _T("HeapID"), LVCFMT_CENTER, 200);
 	objHeapList.InsertColumn(1, _T("堆大小"), LVCFMT_CENTER, 200);
-	getHeapInfoByProcID(g_ProcID);
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)getHeapProc, this, 0, 0);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
@@ -84,4 +84,13 @@ void CHeapDialog::getHeapInfoByProcID(CString ProcID)
 		} while (Heap32ListNext(hHeapSnap, &hList));
 	}
 	CloseHandle(hHeapSnap);
+}
+
+// 找堆的线程处理函数
+DWORD WINAPI CHeapDialog::getHeapProc(LPARAM lParam)
+{
+	// TODO: 在此处添加实现代码.
+	CHeapDialog* pthis = (CHeapDialog*)lParam;
+	pthis->getHeapInfoByProcID(g_ProcID);
+	return 0;
 }

@@ -51,6 +51,9 @@
     <ClInclude Include="CFilesDialog.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CVSCleanerDialog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProcessMangerAlpha.cpp">
@@ -75,6 +78,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CFilesDialog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CVSCleanerDialog.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

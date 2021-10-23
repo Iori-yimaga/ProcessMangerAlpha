@@ -9,6 +9,8 @@
 #include "afxdialogex.h"
 #include <powrprof.h>
 #pragma comment(lib,"Powrprof.lib")
+#include <Psapi.h>
+#pragma comment(lib,"Psapi.lib")
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -36,8 +38,6 @@ public:
 // 实现
 protected:
 	DECLARE_MESSAGE_MAP()
-public:
-
 };
 
 // 转换时间
@@ -133,8 +133,11 @@ BOOL CProcessMangerAlphaDlg::OnInitDialog()
 
 	// 添加列
 	objListCtrl.InsertColumn(0, _T("PID"),    LVCFMT_CENTER, 100);
-	objListCtrl.InsertColumn(1, _T("进程名"),  LVCFMT_CENTER, 200);
+	objListCtrl.InsertColumn(1, _T("进程名"),  LVCFMT_CENTER, 150);
 	objListCtrl.InsertColumn(2, _T("线程数量"), LVCFMT_CENTER, 100);
+	objListCtrl.InsertColumn(3, _T("进程路径"), LVCFMT_CENTER, 200);
+	// 样式
+	objListCtrl.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
 	traverseProcess();
 	// 时间使用1号计时器
 	SetTimer(1, 1000, NULL);
@@ -157,7 +160,6 @@ BOOL CProcessMangerAlphaDlg::OnInitDialog()
 	objStatusBar.SetPaneText(2, _T("获取CPU信息中"));
 	// 重定位
 	RepositionBars(AFX_IDW_CONTROLBAR_FIRST, AFX_IDW_CONTROLBAR_LAST, 0);
-
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -234,11 +236,16 @@ void CProcessMangerAlphaDlg::traverseProcess()
 			objListCtrl.SetItemText(i, 0, procAttr);
 			objListCtrl.SetItemText(i, 1, stcPe32.szExeFile);
 			objListCtrl.SetItemText(i, 2, getThreadsCountByProcID(stcPe32.th32ProcessID));
+			if (_tcslen(getProcFullPath(stcPe32.th32ProcessID)) != 0) {
+				objListCtrl.SetItemText(i, 3, getProcFullPath(stcPe32.th32ProcessID));
+			}
+			else {
+				objListCtrl.SetItemText(i, 3, _T("私密马赛"));
+			}
 			i++;
 		} while (Process32Next(hProcessSnap, &stcPe32));
 	}
-	// 样式
-	objListCtrl.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
+	
 	// 关闭快照
 	CloseHandle(hProcessSnap);
 }
@@ -362,12 +369,16 @@ void CProcessMangerAlphaDlg::OnCommandRangeMMenu(UINT nId) {
 		}
 		// 清理回收站
 		case ID_32784: {
-			MessageBox(_T("期待后续更新~~~"), _T("Oops!"));
+			GetWindowLong(m_hWnd, 0);
+			SHEmptyRecycleBin(m_hWnd, NULL, SHERB_NOCONFIRMATION || SHERB_NOPROGRESSUI || SHERB_NOSOUND);
+			MessageBox(_T("回收站已清空！"), _T("O.O"));
 			break;
 		}
 		// 清理VS项目
 		case ID_32785: {
-
+			CVSCleanerDialog* objCd = new CVSCleanerDialog;
+			objCd->DoModal();
+			break;
 		}
 		// 杀毒
 		case ID_32786: {
@@ -420,8 +431,7 @@ void CProcessMangerAlphaDlg::upperPrivileges() {
 	AdjustTokenPrivileges(hToken, FALSE, &tp, sizeof(tp), NULL, NULL);
 }
 
-
-
+// 热键响应函数
 BOOL CProcessMangerAlphaDlg::PreTranslateMessage(MSG* pMsg)
 {
 	// TODO: 在此添加专用代码和/或调用基类
@@ -436,21 +446,22 @@ BOOL CProcessMangerAlphaDlg::PreTranslateMessage(MSG* pMsg)
 	return CDialogEx::PreTranslateMessage(pMsg);
 }
 
-// 1号计时器（进程和状态栏刷新）
+//计时器处理函数
 void CProcessMangerAlphaDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	// 1号计时器（系统时间）
 	if (nIDEvent == 1) {
 		// 时间
 		SYSTEMTIME st;
 		CString strDTime, strDate, strTime;
-		GetLocalTime(&st);
+		GetLocalTime(&st);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 		strDate.Format(_T("%4d-%2d-%2d"), st.wYear, st.wMonth, st.wDay);
 		strTime.Format(_T("%2d:%2d:%2d"), st.wHour, st.wMinute, st.wSecond);
 		strDTime = strDate + _T("  ") + strTime;
 		objStatusBar.SetPaneText(0, strDTime);
 	}
-	// 2号计时器
+	// 2号计时器（内存和CPU占用）
 	if (nIDEvent == 2) {
 		// 获取新的时间
 		_FILETIME newIdleTIme, newKernelTime, newUserTime;
@@ -469,7 +480,7 @@ void CProcessMangerAlphaDlg::OnTimer(UINT_PTR nIDEvent)
 		userTime = newUserTime;
 
 		// 计算使用率
-		int cpu = (100.0 - (dNewIdleTime - dOldIdleTime) / (dNewKernelTime - dOldkernelTime + dNewUserTime - dOldUserTime) * 100.0);
+		double cpu = (100.0 - (dNewIdleTime - dOldIdleTime) / (dNewKernelTime - dOldkernelTime + dNewUserTime - dOldUserTime) * 100.0);
 		// 获取内存占用率
 		MEMORYSTATUSEX memStatus = { sizeof(MEMORYSTATUSEX) };
 		GlobalMemoryStatusEx(&memStatus);
@@ -478,8 +489,74 @@ void CProcessMangerAlphaDlg::OnTimer(UINT_PTR nIDEvent)
 		MEM.Format(_T("内存占用率 %d%%"), memStatus.dwMemoryLoad);
 		objStatusBar.SetPaneText(1, MEM);
 		CString CPU;
-		CPU.Format(_T("CPU使用率 %d%%"), cpu);
+		CPU.Format(_T("CPU使用率 %.2lf%%"), cpu);
 		objStatusBar.SetPaneText(2, CPU);
 	}
 	CDialogEx::OnTimer(nIDEvent);
 }
+
+// 获取进程路径
+CString CProcessMangerAlphaDlg::getProcFullPath(DWORD procID)
+{
+	// TODO: 在此处添加实现代码.
+	TCHAR        szImagePath[MAX_PATH];
+	TCHAR        pszFullPath[MAX_PATH];
+	HANDLE        hProcess;
+	if (!pszFullPath)
+		return FALSE;
+	pszFullPath[0] = '\0';
+	//由进程ID获得线程信息
+	hProcess = OpenProcess(PROCESS_QUERY_INFORMATION, 0, procID);    
+	if (!hProcess)
+		return FALSE;
+	//得到进程完整DOS路径
+	if (!GetProcessImageFileName(hProcess, szImagePath, MAX_PATH)) {
+		CloseHandle(hProcess);
+		return FALSE;
+	}
+	//DOS路径转NT路径
+	if (!DosPath2NTPath(szImagePath, pszFullPath)) {
+		CloseHandle(hProcess);
+		return FALSE;
+	}
+	CloseHandle(hProcess);
+	return pszFullPath;
+}
+
+// DOS路径转NT路径
+BOOL CProcessMangerAlphaDlg::DosPath2NTPath(LPTSTR DosPath, LPTSTR NTPath)
+{
+	// TODO: 在此处添加实现代码.
+	TCHAR  szDriveStr[500];
+	TCHAR  szDrive[3];
+	TCHAR  szDevName[100];
+	INT    iDevName;
+	INT    i;
+	//检查参数
+	if (!DosPath || !NTPath)
+		return FALSE;
+	//获取本地磁盘所有盘符,以'\0'分隔,所以下面+4
+	if (GetLogicalDriveStrings(sizeof(szDriveStr), szDriveStr)){
+		for (i = 0; szDriveStr[i]; i += 4){
+			if (!lstrcmpi(&(szDriveStr[i]), _T("A:\\")) || !lstrcmpi(&(szDriveStr[i]), _T("B:\\")))
+				continue;    //从C盘开始
+			//盘符
+			szDrive[0] = szDriveStr[i];
+			szDrive[1] = szDriveStr[i + 1];
+			szDrive[2] = '\0';
+			//查询 Dos 设备名(盘符由NT查询DOS)
+			if (!QueryDosDevice(szDrive, szDevName, 100))
+				return FALSE;
+			iDevName = lstrlen(szDevName);
+			//是否为此盘
+			if (_tcsnicmp(DosPath, szDevName, iDevName) == 0){
+				lstrcpy(NTPath, szDrive);//复制驱动器
+				lstrcat(NTPath, DosPath + iDevName);//复制路径
+				return TRUE;
+			}
+		}
+	}
+	lstrcpy(NTPath, DosPath);
+	return FALSE;
+}
+

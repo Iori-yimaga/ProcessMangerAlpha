@@ -188,6 +188,7 @@
     <ClInclude Include="CHeapDialog.h" />
     <ClInclude Include="CModulesDialog.h" />
     <ClInclude Include="CThreadsDialog.h" />
+    <ClInclude Include="CVSCleanerDialog.h" />
     <ClInclude Include="CWindowsDialog.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GlobalVals.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="CHeapDialog.cpp" />
     <ClCompile Include="CModulesDialog.cpp" />
     <ClCompile Include="CThreadsDialog.cpp" />
+    <ClCompile Include="CVSCleanerDialog.cpp" />
     <ClCompile Include="CWindowsDialog.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

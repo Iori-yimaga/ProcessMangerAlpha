@@ -24,4 +24,5 @@ public:
 	CListCtrl objHeapList;
 	virtual BOOL OnInitDialog();
 	void getHeapInfoByProcID(CString ProcID);
+	static DWORD WINAPI getHeapProc(LPARAM lParam);
 };
