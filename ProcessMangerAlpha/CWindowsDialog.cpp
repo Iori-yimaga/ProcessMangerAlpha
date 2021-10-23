@@ -40,7 +40,7 @@ BOOL CWindowsDialog::OnInitDialog()
 
 	// TODO:  在此添加额外的初始化
 	// 添加列
-	objWindowsList.InsertColumn(0, _T("窗口名"), LVCFMT_CENTER, 400);
+	objWindowsList.InsertColumn(1, _T("窗口名"), LVCFMT_CENTER, 400);
 	// 枚举所有窗口
 	EnumWindows(EnumWinProc, (LPARAM)&objWindowsList);
 

@@ -30,6 +30,7 @@ void CHeapDialog::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(CHeapDialog, CDialogEx)
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -45,7 +46,7 @@ BOOL CHeapDialog::OnInitDialog()
 	objHeapList.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES | LVS_EX_CHECKBOXES);
 	objHeapList.InsertColumn(0, _T("HeapID"), LVCFMT_CENTER, 200);
 	objHeapList.InsertColumn(1, _T("堆大小"), LVCFMT_CENTER, 200);
-	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)getHeapProc, this, 0, 0);
+	hThread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)getHeapProc, this, 0, 0);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
@@ -93,4 +94,12 @@ DWORD WINAPI CHeapDialog::getHeapProc(LPARAM lParam)
 	CHeapDialog* pthis = (CHeapDialog*)lParam;
 	pthis->getHeapInfoByProcID(g_ProcID);
 	return 0;
+}
+
+// 关闭窗口重写
+void CHeapDialog::OnClose()
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	TerminateThread(hThread, 0);
+	CDialogEx::OnClose();
 }

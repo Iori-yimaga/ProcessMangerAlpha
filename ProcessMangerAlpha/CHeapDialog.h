@@ -22,7 +22,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CListCtrl objHeapList;
+	HANDLE hThread;
 	virtual BOOL OnInitDialog();
 	void getHeapInfoByProcID(CString ProcID);
 	static DWORD WINAPI getHeapProc(LPARAM lParam);
+	afx_msg void OnClose();
 };

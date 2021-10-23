@@ -38,6 +38,8 @@ public:
 // 实现
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+//	afx_msg void OnClose();
 };
 
 // 转换时间
@@ -56,6 +58,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -130,7 +133,6 @@ BOOL CProcessMangerAlphaDlg::OnInitDialog()
 		MOD_CONTROL | MOD_SHIFT,    // 同时按下Ctrl+Shift
 		'H'                         // H
 	);
-
 	// 添加列
 	objListCtrl.InsertColumn(0, _T("PID"),    LVCFMT_CENTER, 100);
 	objListCtrl.InsertColumn(1, _T("进程名"),  LVCFMT_CENTER, 150);
@@ -240,7 +242,7 @@ void CProcessMangerAlphaDlg::traverseProcess()
 				objListCtrl.SetItemText(i, 3, getProcFullPath(stcPe32.th32ProcessID));
 			}
 			else {
-				objListCtrl.SetItemText(i, 3, _T("私密马赛"));
+				objListCtrl.SetItemText(i, 3, _T("权限不够哦亲，查不到~"));
 			}
 			i++;
 		} while (Process32Next(hProcessSnap, &stcPe32));
@@ -559,4 +561,5 @@ BOOL CProcessMangerAlphaDlg::DosPath2NTPath(LPTSTR DosPath, LPTSTR NTPath)
 	lstrcpy(NTPath, DosPath);
 	return FALSE;
 }
+
 
