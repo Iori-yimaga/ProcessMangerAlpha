@@ -346,6 +346,8 @@ void CProcessMangerAlphaDlg::OnCommandRangeMMenu(UINT nId) {
 		}
 		// PE解析
 		case ID_32780: {
+			CPEFileDialog* objPd = new CPEFileDialog;
+			objPd->DoModal();
 			break;
 		}
 		// 查看窗口

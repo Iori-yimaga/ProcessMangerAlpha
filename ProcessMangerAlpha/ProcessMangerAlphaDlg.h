@@ -10,6 +10,7 @@
 #include "CWindowsDialog.h"
 #include "CFilesDialog.h"
 #include "CVSCleanerDialog.h"
+#include "CPEFileDialog.h"
 #include "GlobalVals.h"
 
 // CProcessMangerAlphaDlg 对话框

@@ -184,9 +184,14 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAddCalcDialog.h" />
+    <ClInclude Include="CDirListDialog.h" />
+    <ClInclude Include="CExportTableDialog.h" />
     <ClInclude Include="CFilesDialog.h" />
     <ClInclude Include="CHeapDialog.h" />
+    <ClInclude Include="CImportTableDialog.h" />
     <ClInclude Include="CModulesDialog.h" />
+    <ClInclude Include="CPEFileDialog.h" />
     <ClInclude Include="CThreadsDialog.h" />
     <ClInclude Include="CVSCleanerDialog.h" />
     <ClInclude Include="CWindowsDialog.h" />
@@ -199,12 +204,18 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAddCalcDialog.cpp" />
+    <ClCompile Include="CDirListDialog.cpp" />
+    <ClCompile Include="CExportTableDialog.cpp" />
     <ClCompile Include="CFilesDialog.cpp" />
     <ClCompile Include="CHeapDialog.cpp" />
+    <ClCompile Include="CImportTableDialog.cpp" />
     <ClCompile Include="CModulesDialog.cpp" />
+    <ClCompile Include="CPEFileDialog.cpp" />
     <ClCompile Include="CThreadsDialog.cpp" />
     <ClCompile Include="CVSCleanerDialog.cpp" />
     <ClCompile Include="CWindowsDialog.cpp" />
+    <ClCompile Include="GlobalVals.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
