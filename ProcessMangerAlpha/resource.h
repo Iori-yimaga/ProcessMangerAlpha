@@ -23,6 +23,11 @@
 #define IDD_DirListDialog               151
 #define IDD_ExportTableDialog           153
 #define IDD_ImportTableDialog           155
+#define IDD_ResTableDialog              157
+#define IDD_RelocDialog                 159
+#define IDD_DIALOG2                     161
+#define IDD_TLSTableDialog              161
+#define IDD_DelayLoadTableDialog        163
 #define IDC_LIST1                       1000
 #define IDC_LIST2                       1001
 #define IDC_LIST3                       1002
@@ -69,6 +74,7 @@
 #define IDC_BUTTON7                     1050
 #define IDC_BUTTON8                     1051
 #define IDC_BUTTON9                     1052
+#define IDC_TREE1                       1053
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -96,9 +102,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        157
+#define _APS_NEXT_RESOURCE_VALUE        165
 #define _APS_NEXT_COMMAND_VALUE         32793
-#define _APS_NEXT_CONTROL_VALUE         1053
+#define _APS_NEXT_CONTROL_VALUE         1054
 #define _APS_NEXT_SYMED_VALUE           105
 #endif
 #endif

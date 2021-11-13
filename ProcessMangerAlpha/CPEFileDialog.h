@@ -53,4 +53,5 @@ public:
 	afx_msg void OnBnClickedButton2();
 	afx_msg void OnBnClickedButton3();
 	void getSectionHeadInfo(PVOID fileBuff);
+//	afx_msg void OnDropFiles(HDROP hDropInfo);
 };

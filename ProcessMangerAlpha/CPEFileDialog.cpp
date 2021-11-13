@@ -78,6 +78,7 @@ BEGIN_MESSAGE_MAP(CPEFileDialog, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON1, &CPEFileDialog::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CPEFileDialog::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON3, &CPEFileDialog::OnBnClickedButton3)
+	ON_WM_DROPFILES()
 END_MESSAGE_MAP()
 
 
@@ -132,11 +133,11 @@ void CPEFileDialog::OnBnClickedButton1()
 		getFileHeadInfo(fileBuff);
 		getOptionalHeadInfo(fileBuff);
 		getSectionHeadInfo(fileBuff);
+		UpdateData(FALSE);
 	}
 	else {
 		MessageBox(_T("这不是一个PE文件"), _T("Error"), 0);
 	}
-	UpdateData(FALSE);
 }
 
 // 判断是否为PE文件
@@ -246,6 +247,7 @@ void CPEFileDialog::getSectionHeadInfo(PVOID fileBuff)
 	DWORD secCount = fileHead->NumberOfSections;
 	// 获取第一个区段的头
 	PIMAGE_SECTION_HEADER secHead = IMAGE_FIRST_SECTION(ntHead);
+	objSectionList.DeleteAllItems();
 	// 遍历所有的区段
 	for (unsigned int i = 0; i < secCount; i++) {
 		// 区段名
@@ -255,14 +257,14 @@ void CPEFileDialog::getSectionHeadInfo(PVOID fileBuff)
 		objSectionList.SetItemText(i, 0, name);
 		// 内存位置和大小
 		CString secVA, secVS;
-		secVA.Format(_T("%X"), secHead->VirtualAddress);
-		secVS.Format(_T("%X"), secHead->Misc.VirtualSize);
+		secVA.Format(_T("%.8X"), secHead->VirtualAddress);
+		secVS.Format(_T("%.8X"), secHead->Misc.VirtualSize);
 		objSectionList.SetItemText(i, 1, secVA);
 		objSectionList.SetItemText(i, 2, secVS);
 		// 文件位置和大小
 		CString secPTRD, secSORD;
-		secPTRD.Format(_T("%X"), secHead->PointerToRawData);
-		secSORD.Format(_T("%X"), secHead->SizeOfRawData);
+		secPTRD.Format(_T("%.8X"), secHead->PointerToRawData);
+		secSORD.Format(_T("%.8X"), secHead->SizeOfRawData);
 		objSectionList.SetItemText(i, 3, secPTRD);
 		objSectionList.SetItemText(i, 4, secSORD);
 		secHead++;
@@ -294,3 +296,41 @@ void CPEFileDialog::OnBnClickedButton3()
 		objLd->DoModal();
 	}
 }
+
+// 实现文件拖拽
+//void CPEFileDialog::OnDropFiles(HDROP hDropInfo)
+//{
+//	// TODO: 在此添加消息处理程序代码和/或调用默认值
+//	// 解析文件名
+//	//DragQueryFile(hDropInfo, 0, (LPWSTR)(LPCWSTR)strFilePath, 100);
+//	//// 打开一个文件
+//	//HANDLE hFile = CreateFile(
+//	//	strFilePath,
+//	//	GENERIC_READ,
+//	//	NULL,
+//	//	NULL,
+//	//	OPEN_EXISTING,
+//	//	FILE_ATTRIBUTE_NORMAL,
+//	//	NULL
+//	//);
+//	//// 获取文件大小 
+//	//DWORD fileSize = GetFileSize(hFile, NULL);
+//	//// 申请空间保存文件内容, 如果读取成功就申请空间
+//	//fileBuff = new char[fileSize];
+//	//// 读取文件
+//	//DWORD read_size = 0;
+//	//errno_t err = ReadFile(hFile, fileBuff, fileSize, &read_size, NULL);
+//	//// 关闭文件
+//	//CloseHandle(hFile);
+//	//// 判断是否是 PE 文件
+//	//if (isPEFile(fileBuff)) {
+//	//	getFileHeadInfo(fileBuff);
+//	//	getOptionalHeadInfo(fileBuff);
+//	//	getSectionHeadInfo(fileBuff);
+//	//	UpdateData(FALSE);
+//	//}
+//	//else {
+//	//	MessageBox(_T("这不是一个PE文件"), _T("Error"), 0);
+//	//}
+//	CDialogEx::OnDropFiles(hDropInfo);
+//}

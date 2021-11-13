@@ -144,9 +144,9 @@ void CExportTableDialog::getExportTableInfo()
 			if (index == ordinalTable[i]) {
 				PCHAR funcName = PCHAR(rvaTofoa(nameTable[i]) + (DWORD)fileBuff);
 				CString strOrdinal, strRVA, strFOA, strName;
-				strOrdinal.Format(_T("%4X"), ordinalTable[i] + base);
-				strRVA.Format(_T("%8X"), funcTable[index]);
-				strFOA.Format(_T("%8X"), rvaTofoa(funcTable[index]));
+				strOrdinal.Format(_T("%.4X"), ordinalTable[i] + base);
+				strRVA.Format(_T("%.8X"), funcTable[index]);
+				strFOA.Format(_T("%.8X"), rvaTofoa(funcTable[index]));
 				strName.Format(_T("%S"), funcName);
 
 				objExportTab.InsertItem(iCol, _T(""));
@@ -163,9 +163,9 @@ void CExportTableDialog::getExportTableInfo()
 		if (is_find == false) {
 			CString strOrdinal, strRVA, strFOA, strName;
 
-			strOrdinal.Format(_T("%4X"), index + base);
-			strRVA.Format(_T("%8X"), funcTable[index]);
-			strFOA.Format(_T("%8X"), rvaTofoa(funcTable[index]));
+			strOrdinal.Format(_T("%.4X"), index + base);
+			strRVA.Format(_T("%.8X"), funcTable[index]);
+			strFOA.Format(_T("%.8X"), rvaTofoa(funcTable[index]));
 			strName.Format(_T("--"));
 
 			objExportTab.InsertItem(iCol, _T(""));

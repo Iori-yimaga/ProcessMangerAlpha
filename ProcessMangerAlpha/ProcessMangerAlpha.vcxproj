@@ -185,6 +185,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CAddCalcDialog.h" />
+    <ClInclude Include="CDelayLoadTableDialog.h" />
     <ClInclude Include="CDirListDialog.h" />
     <ClInclude Include="CExportTableDialog.h" />
     <ClInclude Include="CFilesDialog.h" />
@@ -192,7 +193,10 @@
     <ClInclude Include="CImportTableDialog.h" />
     <ClInclude Include="CModulesDialog.h" />
     <ClInclude Include="CPEFileDialog.h" />
+    <ClInclude Include="CRelocDialog.h" />
+    <ClInclude Include="CResTableDialog.h" />
     <ClInclude Include="CThreadsDialog.h" />
+    <ClInclude Include="CTLSTableDialog.h" />
     <ClInclude Include="CVSCleanerDialog.h" />
     <ClInclude Include="CWindowsDialog.h" />
     <ClInclude Include="framework.h" />
@@ -205,6 +209,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAddCalcDialog.cpp" />
+    <ClCompile Include="CDelayLoadTableDialog.cpp" />
     <ClCompile Include="CDirListDialog.cpp" />
     <ClCompile Include="CExportTableDialog.cpp" />
     <ClCompile Include="CFilesDialog.cpp" />
@@ -212,7 +217,10 @@
     <ClCompile Include="CImportTableDialog.cpp" />
     <ClCompile Include="CModulesDialog.cpp" />
     <ClCompile Include="CPEFileDialog.cpp" />
+    <ClCompile Include="CRelocDialog.cpp" />
+    <ClCompile Include="CResTableDialog.cpp" />
     <ClCompile Include="CThreadsDialog.cpp" />
+    <ClCompile Include="CTLSTableDialog.cpp" />
     <ClCompile Include="CVSCleanerDialog.cpp" />
     <ClCompile Include="CWindowsDialog.cpp" />
     <ClCompile Include="GlobalVals.cpp" />

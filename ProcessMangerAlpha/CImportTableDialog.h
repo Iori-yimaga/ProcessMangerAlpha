@@ -20,4 +20,11 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
+public:
+	virtual BOOL OnInitDialog();
+	CListCtrl objModuleList;
+	CListCtrl objFuncList;
+	void getImportTableInfo();
+	afx_msg void OnClickList1(NMHDR* pNMHDR, LRESULT* pResult);
+	void getFuncInfo(DWORD IATRVA);
 };

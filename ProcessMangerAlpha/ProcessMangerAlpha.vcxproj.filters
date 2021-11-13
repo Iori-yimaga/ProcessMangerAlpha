@@ -69,6 +69,18 @@
     <ClInclude Include="CImportTableDialog.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CResTableDialog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRelocDialog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CTLSTableDialog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CDelayLoadTableDialog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProcessMangerAlpha.cpp">
@@ -114,6 +126,18 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CImportTableDialog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CResTableDialog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CRelocDialog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CTLSTableDialog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CDelayLoadTableDialog.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

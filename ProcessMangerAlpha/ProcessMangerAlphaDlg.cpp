@@ -40,6 +40,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 //	afx_msg void OnClose();
+//	void getTLSTableInfo();
 };
 
 // 转换时间
@@ -220,6 +221,7 @@ HCURSOR CProcessMangerAlphaDlg::OnQueryDragIcon()
 void CProcessMangerAlphaDlg::traverseProcess()
 {
 	// TODO: 在此处添加实现代码.
+	// 创建快照
 	PROCESSENTRY32 stcPe32 = { 0 };
 	stcPe32.dwSize = sizeof(PROCESSENTRY32);
 	// 1.创建快照
@@ -247,7 +249,6 @@ void CProcessMangerAlphaDlg::traverseProcess()
 			i++;
 		} while (Process32Next(hProcessSnap, &stcPe32));
 	}
-	
 	// 关闭快照
 	CloseHandle(hProcessSnap);
 }
@@ -563,5 +564,4 @@ BOOL CProcessMangerAlphaDlg::DosPath2NTPath(LPTSTR DosPath, LPTSTR NTPath)
 	lstrcpy(NTPath, DosPath);
 	return FALSE;
 }
-
 

@@ -1,6 +1,10 @@
 ﻿#pragma once
 #include "CExportTableDialog.h"
 #include "CImportTableDialog.h"
+#include "CResTableDialog.h"
+#include "CRelocDialog.h"
+#include "CTLSTableDialog.h"
+#include "CDelayLoadTableDialog.h"
 
 // CDirListDialog 对话框
 
@@ -57,4 +61,8 @@ public:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
+	afx_msg void OnBnClickedButton3();
+	afx_msg void OnBnClickedButton4();
+	afx_msg void OnBnClickedButton7();
+	afx_msg void OnBnClickedButton8();
 };

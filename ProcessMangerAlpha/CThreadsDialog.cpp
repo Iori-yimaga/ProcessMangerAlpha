@@ -99,7 +99,6 @@ void CThreadsDialog::OnRclickList2(NMHDR* pNMHDR, LRESULT* pResult)
 	int nRow = pNMItemActivate->iItem;
 	// int nColume = pNMItemActivate->iSubItem;
 	g_ThreadID = objThreadsList.GetItemText(nRow, 0);
-	// MessageBox(g_ThreadID);
 	// 载入菜单
 	CMenu objMyMenu;
 	objMyMenu.LoadMenuW(IDR_MENU2);

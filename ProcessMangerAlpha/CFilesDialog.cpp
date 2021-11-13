@@ -120,6 +120,27 @@ void CFilesDialog::enumFilesByDir(CString szPath)
 		} while (FindNextFile(hListFile, &fd));
 	}
 	FindClose(hListFile);
+
+	HIMAGELIST nHiml = { 0 };//图标列表
+	SHFILEINFO nPsfi = { 0 };//文件信息
+	//ImageList_Destroy(nHiml);//清除图标列表
+	BOOL nOn = FALSE;
+	if (!nOn) {
+		nOn = !nOn;
+		nHiml = ImageList_Create(32, 32, ILC_COLOR32, 0, 0);//订制图标框架
+		ImageList_SetBkColor(nHiml, objFilesList.GetBkColor());//设置图标列表底色
+		objFilesList.SendMessage(LVM_SETIMAGELIST, 1, (LPARAM)nHiml);//设置超级列表显示图标
+	}
+	DWORD nListNum = objFilesList.GetItemCount();
+	ImageList_SetImageCount(nHiml, nListNum);
+	for (DWORD i = 0; i < nListNum; i++) {
+		DWORD nFileAttributes = SHGFI_SYSICONINDEX | SHGFI_SMALLICON;//获取文件信息
+		if (!SHGetFileInfo(objFilesList.GetItemText(i, 0), nFileAttributes, &nPsfi, sizeof(SHFILEINFO), SHGFI_ICON))
+			SHGetFileInfo(objFilesList.GetItemText(i, 0), nFileAttributes, &nPsfi, sizeof(SHFILEINFO), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES | SHGFI_SMALLICON);
+		ImageList_ReplaceIcon(nHiml, i, nPsfi.hIcon);
+		DestroyIcon(nPsfi.hIcon);
+		objFilesList.SetItem(i, 0, 2, TEXT(""), i, 0, 0, 0);
+	}
 }
 
 

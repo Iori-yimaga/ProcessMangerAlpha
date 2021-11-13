@@ -97,6 +97,10 @@ void CDirListDialog::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CDirListDialog, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON1, &CDirListDialog::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CDirListDialog::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &CDirListDialog::OnBnClickedButton3)
+	ON_BN_CLICKED(IDC_BUTTON4, &CDirListDialog::OnBnClickedButton4)
+	ON_BN_CLICKED(IDC_BUTTON7, &CDirListDialog::OnBnClickedButton7)
+	ON_BN_CLICKED(IDC_BUTTON8, &CDirListDialog::OnBnClickedButton8)
 END_MESSAGE_MAP()
 
 
@@ -125,8 +129,8 @@ BOOL CDirListDialog::OnInitDialog()
 	// 循环给窗口赋值
 	for (unsigned int i = 0; i < IDDVt.size(); i++) {
 		CString strRVA, strSize;
-		strRVA.Format(_T("%8X"), IDDVt[i]->VirtualAddress);
-		strSize.Format(_T("%8X"), IDDVt[i]->Size);
+		strRVA.Format(_T("%.8X"), IDDVt[i]->VirtualAddress);
+		strSize.Format(_T("%.8X"), IDDVt[i]->Size);
 		// RVA
 		pWnd = GetDlgItem(IDC_EDIT1 + i);
 		pWnd->SetWindowText(strRVA);
@@ -158,4 +162,36 @@ void CDirListDialog::OnBnClickedButton2()
 	// TODO: 在此添加控件通知处理程序代码
 	CImportTableDialog* objId = new CImportTableDialog;
 	objId->DoModal();
+}
+
+// 资源表信息
+void CDirListDialog::OnBnClickedButton3()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CResTableDialog* objRd = new CResTableDialog;
+	objRd->DoModal();
+}
+
+// 重定位表信息
+void CDirListDialog::OnBnClickedButton4()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CRelocDialog* objRld = new CRelocDialog;
+	objRld->DoModal();
+}
+
+// TLS表信息
+void CDirListDialog::OnBnClickedButton7()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CTLSTableDialog* objTd = new CTLSTableDialog;
+	objTd->DoModal();
+}
+
+// 延迟载入表
+void CDirListDialog::OnBnClickedButton8()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CDelayLoadTableDialog* objDd = new CDelayLoadTableDialog;
+	objDd->DoModal();
 }
