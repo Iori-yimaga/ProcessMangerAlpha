@@ -25,9 +25,12 @@
 #define IDD_ImportTableDialog           155
 #define IDD_ResTableDialog              157
 #define IDD_RelocDialog                 159
-#define IDD_DIALOG2                     161
 #define IDD_TLSTableDialog              161
 #define IDD_DelayLoadTableDialog        163
+#define IDD_ServiceListDialog           165
+#define IDR_MENU4                       167
+#define IDD_SoftwareUninstallDialog     168
+#define IDR_MENU5                       170
 #define IDC_LIST1                       1000
 #define IDC_LIST2                       1001
 #define IDC_LIST3                       1002
@@ -97,13 +100,19 @@
 #define ID_32790                        32790
 #define ID_32791                        32791
 #define ID_32792                        32792
+#define ID_32793                        32793
+#define ID_32794                        32794
+#define ID_32795                        32795
+#define ID_32796                        32796
+#define ID_32797                        32797
+#define ID_32798                        32798
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        165
-#define _APS_NEXT_COMMAND_VALUE         32793
+#define _APS_NEXT_RESOURCE_VALUE        171
+#define _APS_NEXT_COMMAND_VALUE         32799
 #define _APS_NEXT_CONTROL_VALUE         1054
 #define _APS_NEXT_SYMED_VALUE           105
 #endif

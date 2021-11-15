@@ -12,7 +12,7 @@ extern PIMAGE_NT_HEADERS ntHead;
 // 获取文件头
 extern PIMAGE_FILE_HEADER fileHead;
 // 获取扩展头
-extern PIMAGE_OPTIONAL_HEADER32 optHead;
+extern PIMAGE_OPTIONAL_HEADER optHead;
 // RVA=======>FOA
 extern DWORD rvaTofoa(DWORD rva);
 // FOA=========>RVA

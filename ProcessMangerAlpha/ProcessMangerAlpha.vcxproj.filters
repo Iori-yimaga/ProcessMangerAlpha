@@ -81,6 +81,12 @@
     <ClInclude Include="CDelayLoadTableDialog.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CServListDialog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CSoftwareUninstallDialog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProcessMangerAlpha.cpp">
@@ -138,6 +144,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CDelayLoadTableDialog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CServListDialog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CSoftwareUninstallDialog.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

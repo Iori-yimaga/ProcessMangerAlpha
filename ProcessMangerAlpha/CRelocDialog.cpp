@@ -83,7 +83,7 @@ void CRelocDialog::getRelocTableInfo()
 	// 获取NT头
 	ntHead = PIMAGE_NT_HEADERS(dosHead->e_lfanew + (LONG)fileBuff);
 	// 获取扩展头
-	optHead = PIMAGE_OPTIONAL_HEADER(&ntHead->OptionalHeader);
+	optHead = PIMAGE_OPTIONAL_HEADER32(&ntHead->OptionalHeader);
 	// 找到数据目录表的第六项，也就是下标为5
 	DWORD relocTableRVA = optHead->DataDirectory[5].VirtualAddress;
 	DWORD relocTableFOA = rvaTofoa(relocTableRVA);

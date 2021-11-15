@@ -66,7 +66,7 @@ void CTLSTableDialog::getTLSTableInfo()
 	// 获取NT头
 	ntHead = PIMAGE_NT_HEADERS(dosHead->e_lfanew + (LONG)fileBuff);
 	// 获取扩展头
-	optHead = PIMAGE_OPTIONAL_HEADER(&ntHead->OptionalHeader);
+	optHead = PIMAGE_OPTIONAL_HEADER32(&ntHead->OptionalHeader);
 	// 找到数据目录表的第三项，也就是下标为2
 	DWORD TLSTableRVA = optHead->DataDirectory[9].VirtualAddress;
 	DWORD TLSTableFOA = rvaTofoa(TLSTableRVA);

@@ -41,6 +41,7 @@ protected:
 public:
 //	afx_msg void OnClose();
 //	void getTLSTableInfo();
+//	virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
 };
 
 // 转换时间
@@ -86,7 +87,7 @@ BEGIN_MESSAGE_MAP(CProcessMangerAlphaDlg, CDialogEx)
 	ON_NOTIFY(NM_RCLICK, IDC_LIST1, &CProcessMangerAlphaDlg::OnRclickList1)
 	// 响应ID在某一范围的工具栏或菜单按钮消息
 	ON_COMMAND_RANGE(ID_32771, ID_32775, &CProcessMangerAlphaDlg::OnCommandRangePMenu)
-	ON_COMMAND_RANGE(ID_32779, ID_32791, &CProcessMangerAlphaDlg::OnCommandRangeMMenu)
+	ON_COMMAND_RANGE(ID_32779, ID_32793, &CProcessMangerAlphaDlg::OnCommandRangeMMenu)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
@@ -343,6 +344,8 @@ void CProcessMangerAlphaDlg::OnCommandRangeMMenu(UINT nId) {
 	switch (nId) {
 		// 查看服务
 		case ID_32779: {
+			CServListDialog* objSd = new CServListDialog;
+			objSd->DoModal();
 			break;
 		}
 		// PE解析
@@ -369,7 +372,8 @@ void CProcessMangerAlphaDlg::OnCommandRangeMMenu(UINT nId) {
 		}
 		// 清理内存
 		case ID_32783: {
-			MessageBox(_T("期待后续更新~~~"), _T("Oops!"));
+			doCleanMemory();
+			MessageBox(_T("内存清理完毕！"), _T("O.O"));
 			break;
 		}
 		// 清理回收站
@@ -417,6 +421,17 @@ void CProcessMangerAlphaDlg::OnCommandRangeMMenu(UINT nId) {
 		// 老板键
 		case ID_32791: {
 			MessageBox(_T("Ctrl + Shift + H"),_T("提示 >_<"));
+			break;
+		}
+		// 卸载软件
+		case ID_32792: {
+			CSoftwareUninstallDialog* objSUd = new CSoftwareUninstallDialog;
+			objSUd->DoModal();
+			break;
+		}
+		// 管理启动项
+		case ID_32793: {
+			
 			break;
 		}
 		default:
@@ -563,5 +578,19 @@ BOOL CProcessMangerAlphaDlg::DosPath2NTPath(LPTSTR DosPath, LPTSTR NTPath)
 	}
 	lstrcpy(NTPath, DosPath);
 	return FALSE;
+}
+
+// 清理内存
+void CProcessMangerAlphaDlg::doCleanMemory()
+{
+	// TODO: 在此处添加实现代码.
+	DWORD dwPIDList[1000] = { 0 };
+	DWORD bufSize = sizeof(dwPIDList);
+	DWORD dwNeedSize = 0;
+	EnumProcesses(dwPIDList, bufSize, &dwNeedSize);
+	for (DWORD i = 0; i < dwNeedSize / sizeof(DWORD); i++) {
+		HANDLE hProcess = OpenProcess(PROCESS_SET_QUOTA, FALSE, dwPIDList[i]);
+		SetProcessWorkingSetSize(hProcess, -1, -1);
+	}
 }
 

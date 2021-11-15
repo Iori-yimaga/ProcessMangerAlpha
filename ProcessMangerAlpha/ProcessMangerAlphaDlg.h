@@ -11,6 +11,8 @@
 #include "CFilesDialog.h"
 #include "CVSCleanerDialog.h"
 #include "CPEFileDialog.h"
+#include "CServListDialog.h"
+#include "CSoftwareUninstallDialog.h"
 #include "GlobalVals.h"
 
 // CProcessMangerAlphaDlg 对话框
@@ -63,6 +65,7 @@ public:
 	_FILETIME idleTime, kernelTime, userTime;
 	CString getProcFullPath(DWORD procID);
 	BOOL DosPath2NTPath(LPTSTR DosPath, LPTSTR NTPath);
+	void doCleanMemory();
 };
 
 // 时间转换
