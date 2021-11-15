@@ -431,7 +431,8 @@ void CProcessMangerAlphaDlg::OnCommandRangeMMenu(UINT nId) {
 		}
 		// 管理启动项
 		case ID_32793: {
-			
+			CStartUpDialog* objSUd = new CStartUpDialog;
+			objSUd->DoModal();
 			break;
 		}
 		default:

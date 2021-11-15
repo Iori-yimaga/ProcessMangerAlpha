@@ -197,6 +197,7 @@
     <ClInclude Include="CResTableDialog.h" />
     <ClInclude Include="CServListDialog.h" />
     <ClInclude Include="CSoftwareUninstallDialog.h" />
+    <ClInclude Include="CStartUpDialog.h" />
     <ClInclude Include="CThreadsDialog.h" />
     <ClInclude Include="CTLSTableDialog.h" />
     <ClInclude Include="CVSCleanerDialog.h" />
@@ -223,6 +224,7 @@
     <ClCompile Include="CResTableDialog.cpp" />
     <ClCompile Include="CServListDialog.cpp" />
     <ClCompile Include="CSoftwareUninstallDialog.cpp" />
+    <ClCompile Include="CStartUpDialog.cpp" />
     <ClCompile Include="CThreadsDialog.cpp" />
     <ClCompile Include="CTLSTableDialog.cpp" />
     <ClCompile Include="CVSCleanerDialog.cpp" />

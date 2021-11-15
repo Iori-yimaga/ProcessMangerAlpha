@@ -31,6 +31,8 @@
 #define IDR_MENU4                       167
 #define IDD_SoftwareUninstallDialog     168
 #define IDR_MENU5                       170
+#define IDD_StartUpDialog               171
+#define IDR_MENU6                       173
 #define IDC_LIST1                       1000
 #define IDC_LIST2                       1001
 #define IDC_LIST3                       1002
@@ -106,13 +108,14 @@
 #define ID_32796                        32796
 #define ID_32797                        32797
 #define ID_32798                        32798
+#define ID_32799                        32799
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        171
-#define _APS_NEXT_COMMAND_VALUE         32799
+#define _APS_NEXT_RESOURCE_VALUE        174
+#define _APS_NEXT_COMMAND_VALUE         32800
 #define _APS_NEXT_CONTROL_VALUE         1054
 #define _APS_NEXT_SYMED_VALUE           105
 #endif
