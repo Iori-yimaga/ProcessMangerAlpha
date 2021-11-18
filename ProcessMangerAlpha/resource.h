@@ -33,6 +33,11 @@
 #define IDR_MENU5                       170
 #define IDD_StartUpDialog               171
 #define IDR_MENU6                       173
+#define IDD_VirusDefenceDialog          174
+#define IDB_BITMAP1                     177
+#define IDD_AllKillingDialog            178
+#define IDD_ByPathKillingDialog         180
+#define IDD_BlacklistDialog             182
 #define IDC_LIST1                       1000
 #define IDC_LIST2                       1001
 #define IDC_LIST3                       1002
@@ -80,6 +85,7 @@
 #define IDC_BUTTON8                     1051
 #define IDC_BUTTON9                     1052
 #define IDC_TREE1                       1053
+#define IDC_STATIC1                     1055
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -114,9 +120,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        174
+#define _APS_NEXT_RESOURCE_VALUE        186
 #define _APS_NEXT_COMMAND_VALUE         32800
-#define _APS_NEXT_CONTROL_VALUE         1054
+#define _APS_NEXT_CONTROL_VALUE         1056
 #define _APS_NEXT_SYMED_VALUE           105
 #endif
 #endif

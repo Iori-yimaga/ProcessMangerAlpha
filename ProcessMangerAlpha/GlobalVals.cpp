@@ -17,6 +17,10 @@ DWORD rvaTofoa(DWORD rva) {
 	PIMAGE_SECTION_HEADER secHead = IMAGE_FIRST_SECTION(ntHead);
 	// 遍历所有的区段
 	for (unsigned int i = 0; i < secCount; i++) {
+		if (rva < secHead->VirtualAddress) {
+			MessageBox(0, L"Out Of Range!", L"Tips", 0);
+			return -1;
+		}
 		// 判断是否落在了某个区段内
 		if (rva >= secHead->VirtualAddress && rva <= secHead->VirtualAddress + secHead->SizeOfRawData) {
 			// rva - 区段起始偏移 = foa - 区段在文件中的偏移
@@ -41,10 +45,9 @@ DWORD foaTorva(DWORD foa) {
 	DWORD secCount = fileHead->NumberOfSections;
 	// 获取第一个区段的头
 	PIMAGE_SECTION_HEADER secHead = IMAGE_FIRST_SECTION(ntHead);
-	if (foa < secHead->VirtualAddress) {
-		// 记录区段名字
-		sectionName.Format(_T("Header"));
-		return foa;
+	if (foa < secHead->PointerToRawData) {
+		MessageBox(0, L"Out Of Range!", L"Tips", 0);
+		return -1;
 	}
 	else {
 		// 遍历所有的区段

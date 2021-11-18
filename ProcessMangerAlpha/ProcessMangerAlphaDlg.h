@@ -14,6 +14,7 @@
 #include "CServListDialog.h"
 #include "CSoftwareUninstallDialog.h"
 #include "CStartUpDialog.h"
+#include "CVirusDefenceDialog.h"
 #include "GlobalVals.h"
 
 // CProcessMangerAlphaDlg 对话框

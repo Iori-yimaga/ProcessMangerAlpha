@@ -13,14 +13,44 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\PE文件">
+      <UniqueIdentifier>{7b951754-9c52-4d49-a445-82a7af1fef84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\进程线程模块">
+      <UniqueIdentifier>{a18b372a-c791-4bdb-91bc-703a2494032b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\注册表">
+      <UniqueIdentifier>{7509a1c3-94fd-402c-a293-cbaf298d5199}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\服务">
+      <UniqueIdentifier>{7936ddbd-9c5e-44b1-9312-d56e6dcd7f02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\杀毒">
+      <UniqueIdentifier>{8ed2236b-fe0c-4208-940f-a42bfcac10da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\文件">
+      <UniqueIdentifier>{af2cc690-0644-471b-b799-811e17ae7e2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\PE文件">
+      <UniqueIdentifier>{d5e4ba78-9acb-49a8-a4bd-87e8b948f91d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\进程线程模块">
+      <UniqueIdentifier>{37726e0f-6012-46db-abbc-83a07e43a11d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\服务">
+      <UniqueIdentifier>{1520f7b5-0afa-476f-aea2-d88f96519bbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\文件">
+      <UniqueIdentifier>{3ee2b5e7-ed66-4337-99c7-8fbf926259ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\杀毒">
+      <UniqueIdentifier>{e48f62d8-12be-4160-b0cc-cc423c4f776b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\注册表">
+      <UniqueIdentifier>{c26ea4ae-5b06-4c23-984c-d6dda0527175}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ProcessMangerAlpha.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ProcessMangerAlphaDlg.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -33,130 +63,166 @@
     <ClInclude Include="pch.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CThreadsDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CModulesDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalVals.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CHeapDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CWindowsDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CFilesDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CVSCleanerDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CPEFileDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="CAddCalcDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CDirListDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CExportTableDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CImportTableDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CResTableDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CRelocDialog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CTLSTableDialog.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\PE文件</Filter>
     </ClInclude>
     <ClInclude Include="CDelayLoadTableDialog.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\PE文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CDirListDialog.h">
+      <Filter>头文件\PE文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CExportTableDialog.h">
+      <Filter>头文件\PE文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CImportTableDialog.h">
+      <Filter>头文件\PE文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CPEFileDialog.h">
+      <Filter>头文件\PE文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRelocDialog.h">
+      <Filter>头文件\PE文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CResTableDialog.h">
+      <Filter>头文件\PE文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CTLSTableDialog.h">
+      <Filter>头文件\PE文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CModulesDialog.h">
+      <Filter>头文件\进程线程模块</Filter>
+    </ClInclude>
+    <ClInclude Include="CHeapDialog.h">
+      <Filter>头文件\进程线程模块</Filter>
+    </ClInclude>
+    <ClInclude Include="CThreadsDialog.h">
+      <Filter>头文件\进程线程模块</Filter>
     </ClInclude>
     <ClInclude Include="CServListDialog.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\服务</Filter>
     </ClInclude>
     <ClInclude Include="CSoftwareUninstallDialog.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\注册表</Filter>
     </ClInclude>
     <ClInclude Include="CStartUpDialog.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\注册表</Filter>
+    </ClInclude>
+    <ClInclude Include="CVirusDefenceDialog.h">
+      <Filter>头文件\杀毒</Filter>
+    </ClInclude>
+    <ClInclude Include="CFilesDialog.h">
+      <Filter>头文件\文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CVSCleanerDialog.h">
+      <Filter>头文件\文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWindowsDialog.h">
+      <Filter>头文件\服务</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessMangerAlphaDlg.h">
+      <Filter>头文件\进程线程模块</Filter>
+    </ClInclude>
+    <ClInclude Include="EnDeCrypt.h">
+      <Filter>头文件\杀毒</Filter>
+    </ClInclude>
+    <ClInclude Include="CAllKillingDialog.h">
+      <Filter>头文件\杀毒</Filter>
+    </ClInclude>
+    <ClInclude Include="CByPathKillingDialog.h">
+      <Filter>头文件\杀毒</Filter>
+    </ClInclude>
+    <ClInclude Include="CBlacklistDialog.h">
+      <Filter>头文件\杀毒</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessMangerAlpha.h">
+      <Filter>头文件\进程线程模块</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ProcessMangerAlpha.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="ProcessMangerAlphaDlg.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CThreadsDialog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CModulesDialog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CHeapDialog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CWindowsDialog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CFilesDialog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CVSCleanerDialog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CPEFileDialog.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="GlobalVals.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CAddCalcDialog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CDirListDialog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CExportTableDialog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CImportTableDialog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CResTableDialog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CRelocDialog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CTLSTableDialog.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\PE文件</Filter>
     </ClCompile>
     <ClCompile Include="CDelayLoadTableDialog.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\PE文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CDirListDialog.cpp">
+      <Filter>源文件\PE文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CExportTableDialog.cpp">
+      <Filter>源文件\PE文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CImportTableDialog.cpp">
+      <Filter>源文件\PE文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CRelocDialog.cpp">
+      <Filter>源文件\PE文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CResTableDialog.cpp">
+      <Filter>源文件\PE文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CTLSTableDialog.cpp">
+      <Filter>源文件\PE文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CHeapDialog.cpp">
+      <Filter>源文件\进程线程模块</Filter>
+    </ClCompile>
+    <ClCompile Include="CModulesDialog.cpp">
+      <Filter>源文件\进程线程模块</Filter>
+    </ClCompile>
+    <ClCompile Include="CPEFileDialog.cpp">
+      <Filter>源文件\PE文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CThreadsDialog.cpp">
+      <Filter>源文件\进程线程模块</Filter>
     </ClCompile>
     <ClCompile Include="CServListDialog.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\服务</Filter>
+    </ClCompile>
+    <ClCompile Include="CWindowsDialog.cpp">
+      <Filter>源文件\服务</Filter>
+    </ClCompile>
+    <ClCompile Include="CFilesDialog.cpp">
+      <Filter>源文件\文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CVSCleanerDialog.cpp">
+      <Filter>源文件\文件</Filter>
     </ClCompile>
     <ClCompile Include="CSoftwareUninstallDialog.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\注册表</Filter>
     </ClCompile>
     <ClCompile Include="CStartUpDialog.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\注册表</Filter>
+    </ClCompile>
+    <ClCompile Include="CVirusDefenceDialog.cpp">
+      <Filter>源文件\杀毒</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessMangerAlphaDlg.cpp">
+      <Filter>源文件\进程线程模块</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessMangerAlpha.cpp">
+      <Filter>源文件\进程线程模块</Filter>
+    </ClCompile>
+    <ClCompile Include="EnDeCrypt.cpp">
+      <Filter>源文件\杀毒</Filter>
+    </ClCompile>
+    <ClCompile Include="CAllKillingDialog.cpp">
+      <Filter>源文件\杀毒</Filter>
+    </ClCompile>
+    <ClCompile Include="CByPathKillingDialog.cpp">
+      <Filter>源文件\杀毒</Filter>
+    </ClCompile>
+    <ClCompile Include="CBlacklistDialog.cpp">
+      <Filter>源文件\杀毒</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +237,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\ProcessMangerAlpha.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="logo.bmp">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

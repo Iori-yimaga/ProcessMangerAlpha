@@ -164,7 +164,6 @@ BOOL CProcessMangerAlphaDlg::OnInitDialog()
 	objStatusBar.SetPaneText(2, _T("获取CPU信息中"));
 	// 重定位
 	RepositionBars(AFX_IDW_CONTROLBAR_FIRST, AFX_IDW_CONTROLBAR_LAST, 0);
-
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -391,7 +390,8 @@ void CProcessMangerAlphaDlg::OnCommandRangeMMenu(UINT nId) {
 		}
 		// 杀毒
 		case ID_32786: {
-			MessageBox(_T("期待后续更新~~~"), _T("Oops!"));
+			CVirusDefenceDialog* objVDd = new CVirusDefenceDialog;
+			objVDd->DoModal();
 			break;
 		}
 		// 关机
@@ -415,7 +415,8 @@ void CProcessMangerAlphaDlg::OnCommandRangeMMenu(UINT nId) {
 		// 休眠
 		case ID_32790: {
 			upperPrivileges();
-			SetSuspendState(TRUE, FALSE, FALSE);
+			//SetSuspendState(TRUE, FALSE, FALSE);
+			LockWorkStation();
 			break;
 		}
 		// 老板键
